@@ -31,6 +31,7 @@ namespace MyFlix.Controllers
             return Content(string.Format("pageid={0};SortBy={1}",pageid,sortby));
         }
 
+        [Route("movies/released/{year}/{month:range(1,12)}")]
         public ActionResult ByReleased(int year, int month)
         {
             return Content(string.Format("{0}/{1}", year, month));
