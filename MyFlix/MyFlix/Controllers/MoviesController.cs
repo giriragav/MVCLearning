@@ -14,7 +14,9 @@ namespace MyFlix.Controllers
         {
             var movie = new Movie(){ ID = 1, Name = "MarudhaNayagam" };
 
-            return View(movie);
+            //return View(movie);
+            //return Content("Hello Mams");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
