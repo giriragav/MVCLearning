@@ -1,4 +1,5 @@
 ﻿using MyFlix.Models;
+using MyFlix.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,14 @@ namespace MyFlix.Controllers
     public class MoviesController : Controller
     {
         // GET: Movies
-        public ActionResult Random()
-        {
-            var movie = new Movie(){ ID = 1, Name = "MarudhaNayagam" };
+        //public ActionResult Random()
+        //{
+        //    var movie = new Movie(){ ID = 1, Name = "MarudhaNayagam" };
 
-            //return View(movie);
-            //return Content("Hello Mams");
-            return RedirectToAction("Index", "Home");
-        }
+        //    //return View(movie);
+        //    //return Content("Hello Mams");
+        //    return RedirectToAction("Index", "Home");
+        //}
 
         public ActionResult Edit(int id)
         {
@@ -35,6 +36,20 @@ namespace MyFlix.Controllers
         public ActionResult ByReleased(int year, int month)
         {
             return Content(string.Format("{0}/{1}", year, month));
+        }
+
+        public ActionResult Random()
+        {
+            var movie = new Movie() { Name = "MarudhaNayam" };
+            var customers = new List<Customer>()
+            {
+                new Customer() {Name = "Giri" },
+                new Customer() {Name = "Preethi" }
+            };
+            var randomViewModel = new RandomMovieViewModel() { Movie = movie, Customers = customers };
+
+            return View(randomViewModel);
+
         }
     }
 }
