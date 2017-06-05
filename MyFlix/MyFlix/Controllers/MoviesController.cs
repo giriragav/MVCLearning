@@ -40,7 +40,7 @@ namespace MyFlix.Controllers
 
         public ActionResult Random()
         {
-            var movie = new Movie() { Name = "MarudhaNayam" };
+            var movie = new Movie() { Name = "MarudhaNayagam" };
             var customers = new List<Customer>()
             {
                 new Customer() {Name = "Giri" },
