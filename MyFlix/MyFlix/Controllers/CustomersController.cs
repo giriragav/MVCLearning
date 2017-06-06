@@ -1,5 +1,6 @@
 ﻿using MyFlix.Models;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,7 +24,7 @@ namespace MyFlix.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = _context.Customers;
+            var customers = _context.Customers.Include(c=>c.MembershipType);
 
             return View(customers);
         }
