@@ -1,6 +1,7 @@
 ﻿using MyFlix.Models;
 using MyFlix.ViewModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -50,6 +51,21 @@ namespace MyFlix.Controllers
 
             return View(randomViewModel);
 
+        }
+
+        public ActionResult Index()
+        {
+            var movies = GetMovies();
+            return View(movies);
+        }
+
+        public IEnumerable<Movie> GetMovies()
+        {
+            var movies = new List<Movie>();
+            movies.Add(new Movie() { Name = "MarudhaNayagam" });
+            movies.Add(new Movie() { Name = "MarmaYogi" });
+
+            return movies;
         }
     }
 }
