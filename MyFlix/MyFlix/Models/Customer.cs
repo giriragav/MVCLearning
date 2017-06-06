@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyFlix.Models
 {
@@ -11,5 +12,6 @@ namespace MyFlix.Models
         public bool IsSubscribedToNewsletter { get; set; }
         public MembershipType MembershipType { get; set; }
         public byte MembershipTypeID { get; set; }
+        public DateTime? BirthDate { get; set; }
     }
 }
