@@ -220,6 +220,14 @@
     <Compile Include="Migrations\201706062105414_AddMovieTable.Designer.cs">
       <DependentUpon>201706062105414_AddMovieTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706062258042_AddedNameToMemberShipType.cs" />
+    <Compile Include="Migrations\201706062258042_AddedNameToMemberShipType.Designer.cs">
+      <DependentUpon>201706062258042_AddedNameToMemberShipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706062300084_PopulateNameInMemberShipType.cs" />
+    <Compile Include="Migrations\201706062300084_PopulateNameInMemberShipType.Designer.cs">
+      <DependentUpon>201706062300084_PopulateNameInMemberShipType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -331,6 +339,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706062105414_AddMovieTable.resx">
       <DependentUpon>201706062105414_AddMovieTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706062258042_AddedNameToMemberShipType.resx">
+      <DependentUpon>201706062258042_AddedNameToMemberShipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706062300084_PopulateNameInMemberShipType.resx">
+      <DependentUpon>201706062300084_PopulateNameInMemberShipType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
