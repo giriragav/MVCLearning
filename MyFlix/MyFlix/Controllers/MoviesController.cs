@@ -11,6 +11,12 @@ namespace MyFlix.Controllers
 {
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
         // GET: Movies
         //public ActionResult Random()
         //{
@@ -55,7 +61,7 @@ namespace MyFlix.Controllers
 
         public ActionResult Index()
         {
-            var movies = GetMovies();
+            var movies = _context.Movies;
             return View(movies);
         }
 
