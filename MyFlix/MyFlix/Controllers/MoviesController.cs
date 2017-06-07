@@ -33,10 +33,10 @@ namespace MyFlix.Controllers
         //    return RedirectToAction("Index", "Home");
         //}
 
-        public ActionResult Edit(int id)
-        {
-            return Content("id="+ id);
-        }
+        //public ActionResult Edit(int id)
+        //{
+        //    return Content("id="+ id);
+        //}
 
         public ActionResult Edited(int? pageid, string sortby)
         {
@@ -77,6 +77,56 @@ namespace MyFlix.Controllers
             if (movie == null)
                 return HttpNotFound();
             return View(movie);
+        }
+
+        public ActionResult New()
+        {
+            var genres = _context.Genres;
+
+            var viewModel = new MovieViewModel
+            {
+                Genres = genres
+            };
+
+            return View("MovieForm", viewModel);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.ID==id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            var genres = _context.Genres;
+
+            var viewModel = new MovieViewModel
+            {
+                Genres = genres,
+                Movie = movie
+            };
+
+            return View("MovieForm", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.ID == 0)
+                _context.Movies.Add(movie);
+            else
+            {
+                var movieINDB = _context.Movies.Single(m => m.ID == movie.ID);
+                movieINDB.Name = movie.Name;
+                movieINDB.ReleasedDate = movie.ReleasedDate;
+                movieINDB.DateAdded = movie.DateAdded;
+                movieINDB.GenreId = movie.GenreId;
+                movieINDB.NumberInStock = movie.NumberInStock;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
         }
     }
 }

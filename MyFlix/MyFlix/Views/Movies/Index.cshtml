@@ -12,6 +12,7 @@
             <tr>
                 <th>Movie Name</th>
                 <th>Genre</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -20,8 +21,17 @@
                 <tr> 
                     <td> @Html.ActionLink(movie.Name,"Details","Movies",new { id = movie.ID },null)</td>
                     <td> @movie.Genre.Name</td>
+                    <td> @Html.ActionLink("Edit", "Edit", "Movies", new { id = movie.ID }, null)</td>
                 </tr>
             }
+            <tr>
+                <td>
+                    @using (Html.BeginForm("New", "Movies"))
+                    {
+                        <button type="submit" class="btn btn-primary">Add new movie</button>
+                    }
+                </td>
+            </tr>
         </tbody>
     </table>
 }

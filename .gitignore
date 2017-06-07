@@ -3,5 +3,6 @@
 **/bin/
 **/Debug/
 **/Release/
-MyFlix/**/*.suo
+/MyFlix/.vs/**/*.suo
 **/App_Data/
+*.suo
