@@ -1,10 +1,10 @@
 ﻿@model MyFlix.ViewModels.CustomerViewModel
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = Model.Customer==null? "New Customer":"Edit Customer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Customer</h2>
+<h2>@ViewBag.Title </h2>
 @using (Html.BeginForm("Save", "Customers"))
 {
     <div class="form-group">
