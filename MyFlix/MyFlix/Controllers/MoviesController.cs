@@ -2,6 +2,7 @@
 using MyFlix.ViewModels;
 using System;
 using System.Collections;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,11 @@ namespace MyFlix.Controllers
         public MoviesController()
         {
             _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
         }
         // GET: Movies
         //public ActionResult Random()
@@ -61,17 +67,16 @@ namespace MyFlix.Controllers
 
         public ActionResult Index()
         {
-            var movies = _context.Movies;
+            var movies = _context.Movies.Include(m=>m.Genre);
             return View(movies);
         }
 
-        public IEnumerable<Movie> GetMovies()
+        public ActionResult Details(int Id)
         {
-            var movies = new List<Movie>();
-            movies.Add(new Movie() { Name = "MarudhaNayagam" });
-            movies.Add(new Movie() { Name = "MarmaYogi" });
-
-            return movies;
+            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.ID == Id);
+            if (movie == null)
+                return HttpNotFound();
+            return View(movie);
         }
     }
 }
