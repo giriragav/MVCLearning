@@ -42,5 +42,10 @@ namespace MyFlix.Controllers
             return View(customer);
 
         }
+
+        public ActionResult New()
+        {
+            return View();
+        }
     }
 }
