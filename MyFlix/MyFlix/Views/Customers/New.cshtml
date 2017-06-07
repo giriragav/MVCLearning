@@ -1,4 +1,4 @@
-﻿@model MyFlix.Models.Customer
+﻿@model MyFlix.ViewModels.NewCustomerViewModel
 @{
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,17 +8,21 @@
 @using (Html.BeginForm("Create", "Customers"))
 {
     <div class="form-group">
-        @Html.LabelFor(m => m.Name,"Customer Name")
-        @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
+        @Html.LabelFor(m => m.Customer.Name,"Customer Name")
+        @Html.TextBoxFor(m => m.Customer.Name, new {@class = "form-control"})
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.BirthDate,"Birth Date")
-        @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Customer.BirthDate,"Birth Date")
+        @Html.TextBoxFor(m => m.Customer.BirthDate, new { @class = "form-control" })
     </div>
     <div class="form-group">
         <label>
-            @Html.CheckBoxFor(m => m.IsSubscribedToNewsletter) News letter subscription?
+            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) News letter subscription?
         </label>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.MembershipTypeID, "Membership Type")
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeID, new SelectList(Model.MembershipTypes,"Id","Name"),"Select Membership Type", new { @class = "form-control" })
     </div>
 }
 
