@@ -11,10 +11,13 @@
         <thead>
             <tr>
                 <th>
-                    Customer List
+                    Customer Name
                 </th>
                 <th>
                     Membership Type
+                </th>
+                <th>
+                    
                 </th>
             </tr>
         </thead>
@@ -27,6 +30,9 @@
                     </td>
                     <td>
                         @customer.MembershipType.Name
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Customers", new { id = customer.ID }, null)
                     </td>
                 </tr>
             }

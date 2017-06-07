@@ -47,17 +47,44 @@ namespace MyFlix.Controllers
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes;
-            var viewModel = new NewCustomerViewModel
+            var viewModel = new CustomerViewModel
             {
                 MembershipTypes = membershipTypes
             };
-            return View(viewModel);
+            return View("CustomerForm",viewModel);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.ID == id);
+
+            if (customer.ID == 0)
+                return HttpNotFound();
+
+            var membershipTypes = _context.MembershipTypes;
+            var viewModel = new CustomerViewModel
+            {
+                Customer = customer,
+                MembershipTypes = membershipTypes
+            };
+            return View("CustomerForm",viewModel);
         }
 
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public ActionResult Save(Customer customer)
         {
-            _context.Customers.Add(customer);
+            if(customer.ID == 0)
+                _context.Customers.Add(customer);
+            else
+            {
+                var customerInDB = _context.Customers.Single(c => c.ID == customer.ID);
+
+                customerInDB.Name = customer.Name;
+                customerInDB.BirthDate = customer.BirthDate;
+                customerInDB.MembershipTypeID = customer.MembershipTypeID;
+                customerInDB.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+            }
+
             _context.SaveChanges();
 
             return RedirectToAction("Index","Customers");
