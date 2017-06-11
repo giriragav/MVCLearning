@@ -6,12 +6,18 @@ namespace MyFlix.Models
     public class Customer
     {
         public int ID { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Customer name is required")]
         [StringLength(255)]
         public string Name { get; set; }
+
         public bool IsSubscribedToNewsletter { get; set; }
+
         public MembershipType MembershipType { get; set; }
+
+        [Required(ErrorMessage ="Please select a Membership type")]
         public byte MembershipTypeID { get; set; }
+
         public DateTime? BirthDate { get; set; }
     }
 }
