@@ -73,6 +73,17 @@ namespace MyFlix.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var membershipTypes = _context.MembershipTypes;
+
+                var customerForm = new CustomerViewModel()
+                {
+                    MembershipTypes = membershipTypes
+                };
+
+                return View("CustomerForm", customerForm);
+            }
             if(customer.ID == 0)
                 _context.Customers.Add(customer);
             else
