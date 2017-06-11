@@ -18,6 +18,7 @@ namespace MyFlix.Models
         [Required(ErrorMessage ="Please select a Membership type")]
         public byte MembershipTypeID { get; set; }
 
+        [Min18YearsIfaMember]
         public DateTime? BirthDate { get; set; }
     }
 }
