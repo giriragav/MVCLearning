@@ -16,7 +16,7 @@
                 <th>
                     Membership Type
                 </th>
-                <th>
+                <th colspan="1">
                     
                 </th>
             </tr>
@@ -32,12 +32,13 @@
                         @customer.MembershipType.Name
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", "Customers", new { id = customer.ID }, null)
+                        @Html.ActionLink("Edit", "Edit", "Customers", new { id = customer.ID }, null) &nbsp;
+                        @Html.ActionLink("Remove", "Remove", "Customers", new { id = customer.ID }, null)
                     </td>
                 </tr>
             }
             <tr>
-                <td colspan="2">
+                <td colspan="3">
                     @using (Html.BeginForm("New", "Customers"))
                     {
                         <button type="submit" class="btn btn-primary">Add new customer</button>

@@ -55,6 +55,20 @@ namespace MyFlix.Controllers
             return View("CustomerForm",viewModel);
         }
 
+        public ActionResult Remove(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.ID == id);
+
+            if (customer.ID == 0)
+                return HttpNotFound();
+
+            _context.Customers.Remove(customer);
+
+            _context.SaveChanges();
+
+            return View("Index",_context.Customers.Include(c=>c.MembershipType));
+        }
+
         public ActionResult Edit(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.ID == id);
