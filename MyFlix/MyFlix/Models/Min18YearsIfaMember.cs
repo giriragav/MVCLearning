@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 
 namespace MyFlix.Models
-{
+{   
     public class Min18YearsIfaMember:ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)

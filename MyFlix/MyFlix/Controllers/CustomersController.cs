@@ -49,6 +49,7 @@ namespace MyFlix.Controllers
             var membershipTypes = _context.MembershipTypes;
             var viewModel = new CustomerViewModel
             {
+                Customer = new Customer(),
                 MembershipTypes = membershipTypes
             };
             return View("CustomerForm",viewModel);

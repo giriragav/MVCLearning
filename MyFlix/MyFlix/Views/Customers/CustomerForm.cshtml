@@ -7,15 +7,11 @@
 <h2>@ViewBag.Title </h2>
 @using (Html.BeginForm("Save", "Customers"))
 {
+    @Html.ValidationSummary(true,"Please correct following errors before saving.")
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name,"Customer Name")
         @Html.TextBoxFor(m => m.Customer.Name, new {@class = "form-control"})
         @Html.ValidationMessageFor(m=>m.Customer.Name)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.BirthDate,"Birth Date")
-        @Html.TextBoxFor(m => m.Customer.BirthDate,"{0:d MMM yyyy}", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Customer.BirthDate)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.MembershipTypeID, "Membership Type")
@@ -23,6 +19,11 @@
         @Html.ValidationMessageFor(m => m.Customer.MembershipTypeID)
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.Customer.BirthDate,"Birth Date")
+        @Html.TextBoxFor(m => m.Customer.BirthDate,"{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.BirthDate)
+    </div>
+   <div class="form-group">
         <label>
             @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) News letter subscription?
         </label>
