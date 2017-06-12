@@ -85,10 +85,24 @@ namespace MyFlix.Controllers
 
             var viewModel = new MovieViewModel
             {
+                Movie = new Movie(),
                 Genres = genres
             };
 
             return View("MovieForm", viewModel);
+        }
+
+        public ActionResult Remove(int ID)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.ID == ID);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            _context.Movies.Remove(movie);
+            _context.SaveChanges();
+
+            return View("Index", _context.Movies.Include(m=>m.Genre));
         }
 
         public ActionResult Edit(int id)
@@ -110,6 +124,7 @@ namespace MyFlix.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
             if (movie.ID == 0)
